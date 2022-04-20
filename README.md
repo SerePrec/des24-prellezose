@@ -19,8 +19,16 @@
 
 Configuré el script **start** de denon para que, ante un cambio de código, el servidor se reinicie automáticamente.
 
+Para su ejecución (desarrollo) simplemente basta con ejecutar la siguiente línea
+
 ```sh
 $ denon start
+```
+
+Internamente, denon ejecuta la sentencia
+
+```sh
+$ deno run --allow-net --allow-read --allow-env ./src/server.tsx
 ```
 
 ### Vistas
@@ -31,4 +39,20 @@ Existe la siguiente vista que provee una manera de probar el desafío.
 
 ### Detalles y comentarios
 
-TODO:
+La consigna es simple, por lo que no hay mucho que agregar.
+
+Realizo la importación y exportación de todas las dependencias del proyecto de manera centralizada en el archivo `deps.ts`
+
+Utilizo el módulo de **dotenv** para tomar el puerto por variable de entorno en caso de existir.
+
+Inicialmente construí el servidor **Deno** básico que se alojaba casi enteramente en el archivo `server.tsx` (primer commit).
+
+Luego refactoricé el código para dividir este servidor en capas, aunque con simplificaciones ya que es un ejemplo básico (commit b1ece538).  
+Para ello fue necesario importar algunos tipos extras para Typescript.
+Generé los componentes de **React** en la carpeta `views/components` y los importe para renderizar dentro de la "plantilla principal" y mantener más ordenado el código.
+
+Resultado:
+
+<div align="center">
+   <img src="docs/capture.jpg">
+</div>
